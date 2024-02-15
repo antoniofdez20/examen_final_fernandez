@@ -10,6 +10,15 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put<LoginController>(LoginController());
+    // Verifica si ya existen credenciales válidas guardadas
+    // Esto se hará cada vez que se construya el widget
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (controller.tempUser.value.username.isNotEmpty &&
+          controller.tempUser.value.password.isNotEmpty) {
+        Get.offNamed(
+            '/home'); // Redirige al HomeScreen si las credenciales no están vacías
+      }
+    });
     //el gesturedetector nos va a permitir que si el usuario toca en cualquier parte de la pantalla que no sean los campos de texto el teclado se escondera
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
