@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put<LoginController>(LoginController());
+    final controller = Get.find<LoginController>();
     // Verifica si ya existen credenciales válidas guardadas
     // Esto se hará cada vez que se construya el widget
     WidgetsBinding.instance.addPostFrameCallback((_) {
